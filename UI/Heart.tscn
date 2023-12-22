@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Heart" type="ColorRect"]
+margin_right = 10.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 10 )
+color = Color( 0.584314, 0.160784, 0.160784, 1 )

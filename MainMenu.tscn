@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.631373, 0.329412, 0.329412, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -73.0
+margin_right = 73.0
+alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+margin_top = 59.0
+margin_right = 146.0
+margin_bottom = 73.0
+text = "The Legend of Vampire"
+align = 1
+valign = 1
+
+[node name="Start" type="Button" parent="ColorRect/VBoxContainer"]
+margin_top = 77.0
+margin_right = 146.0
+margin_bottom = 97.0
+text = "Play"
+
+[node name="Exit" type="Button" parent="ColorRect/VBoxContainer"]
+margin_top = 101.0
+margin_right = 146.0
+margin_bottom = 121.0
+text = "Exit"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

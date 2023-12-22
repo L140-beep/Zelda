@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TransitionData.gd" type="Script" id=1]
+
+[node name="TransitionData" type="Node"]
+script = ExtResource( 1 )
