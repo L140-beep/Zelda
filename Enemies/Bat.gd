@@ -43,6 +43,7 @@ func chase(delta : float):
 		state = IDLE
 
 func _on_Hurtbox_area_entered(area):
+	print(stats.health, area.damage)
 	stats.health -= area.damage
 	if "knockback_vector" in area:
 		knockback = area.knockback_vector * 120

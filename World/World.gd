@@ -12,7 +12,8 @@ var transitionData = TransitionData
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var player_pos = transitionData.positions.get(level_name).get(transitionData.last_level)
-	player.global_position = Vector2(player_pos.get("x"), player_pos.get("y"))
+	if player_pos != null:
+		player.global_position = Vector2(player_pos.get("x"), player_pos.get("y"))
 	transitionData.last_level = level_name
 	var state = transitionData.states.get(level_name)
 	if state != null:
@@ -61,3 +62,7 @@ func _on_Transition_save_state() -> void:
 		}
 	transitionData.states[level_name] = state
 	print(state)
+
+
+func _on_Chest_opened() -> void:
+	player.stats.health += 1
