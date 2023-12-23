@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
@@ -722,6 +722,14 @@ height = 0.0
 radius = 6.0
 height = 4.0
 
+[sub_resource type="SpriteFrames" id=55]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -794,6 +802,9 @@ collision_layer = 4
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -5 )
 shape = SubResource( 54 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 55 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
