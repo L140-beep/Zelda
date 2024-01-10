@@ -34,6 +34,11 @@ func _ready() -> void:
 			else:
 				print('here')
 				enemy.queue_free()
+		var saved_chest = state.get("Chests")
+		var chests = get_tree().get_nodes_in_group("Chests")
+		for chest in chests:
+			chest.opened = saved_chest.get(chest.name)
+		
 
 
 func _save_object(objects):
@@ -43,7 +48,6 @@ func _save_object(objects):
 		_save_object(childs)
 
 func _on_Transition_save_state() -> void:
-	print('hereee')
 	var bushes = get_tree().get_nodes_in_group("Grass")
 	var state: Dictionary = {}
 	state["Grass"] = {}
@@ -60,6 +64,13 @@ func _on_Transition_save_state() -> void:
 		state["Enemies"][enemy.name] = {
 			"position": enemy.global_position
 		}
+	var chests = get_tree().get_nodes_in_group("Chests")
+	state["Chests"] = {}
+	for chest in chests:
+		state["Chests"][chest.name] = {
+			"opened": chest.opened
+		}
+	
 	transitionData.states[level_name] = state
 	print(state)
 

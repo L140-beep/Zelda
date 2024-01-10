@@ -42,7 +42,7 @@ height = 16.0
 radius = 8.0
 height = 6.0
 
-[node name="Chest" type="Node2D"]
+[node name="Chest" type="Node2D" groups=["Chests"]]
 script = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]

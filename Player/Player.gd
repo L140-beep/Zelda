@@ -23,6 +23,8 @@ onready var hitboxPivot = $HitboxPivot
 onready var hitboxSword = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 
+var enemy_in = false
+
 func _ready():
 	stats.connect("death", self, "queue_free")
 	animationTree.active = true
@@ -30,6 +32,10 @@ func _ready():
 	emit_signal("hp_changed", stats.health)
 	
 func _physics_process(delta):
+	if enemy_in and not hurtbox.invincible:
+		stats.health -= 1
+		hurtbox.start_invicible(0.5)
+		hurtbox.create_hit_effect()
 	match state:
 		MOVE:
 			move_state(delta)
@@ -39,6 +45,12 @@ func _physics_process(delta):
 			roll_state(delta)
 
 func attack_state(delta):
+	#if velocity.x > 0:
+	#	animationPlayer.play("VampireAttackRight")
+	#else:
+	#	animationPlayer.play("VampireAttackLeft")
+	#if velocity.y < 0:
+	#	animationPlayer.play("VampireAttackUp")
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
@@ -84,5 +96,9 @@ func attack_animation_finished():
 
 func _on_Hurtbox_area_entered(area: Area2D) -> void:
 	stats.health -= 1
+	enemy_in = true
 	hurtbox.start_invicible(0.5)
 	hurtbox.create_hit_effect()
+
+func _on_Hurtbox_area_exited(area: Area2D) -> void:
+	enemy_in = false
